@@ -1,0 +1,231 @@
+---
+// FAQ accordion on navy.
+---
+
+<section class="faq" id="faq">
+  <div class="container faq-inner">
+    <div class="faq-header">
+      <p class="eyebrow faq-eyebrow">Questions</p>
+      <h2 class="faq-title">Frequently asked, honestly answered.</h2>
+      <div class="faq-rule" aria-hidden="true">
+        <span class="faq-rule-line"></span>
+        <span class="faq-rule-gem"></span>
+        <span class="faq-rule-line"></span>
+      </div>
+    </div>
+
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>
+          <span class="faq-question">Is it actually daily?</span>
+          <span class="faq-marker" aria-hidden="true"></span>
+        </summary>
+        <p class="faq-answer">
+          Every weekday morning, 7am Pacific. Weekends are for building, so the next issue lands
+          Monday. If a day ever gets skipped, the reason shows up in that week's Friday issue.
+        </p>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          <span class="faq-question">What does it cost?</span>
+          <span class="faq-marker" aria-hidden="true"></span>
+        </summary>
+        <p class="faq-answer">
+          Nothing. No paid tier, no premium archive, no upsell. If that ever changes, existing
+          subscribers keep everything they signed up for.
+        </p>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          <span class="faq-question">Who writes this thing?</span>
+          <span class="faq-marker" aria-hidden="true"></span>
+        </summary>
+        <p class="faq-answer">
+          Rohith Perumandla, an AI/ML engineer with four years in the field. 2 SaaS platforms
+          shipped, 3rd in build. The newsletter is where lessons from real projects get written
+          down while they are still fresh.
+        </p>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          <span class="faq-question">Is it beginner friendly?</span>
+          <span class="faq-marker" aria-hidden="true"></span>
+        </summary>
+        <p class="faq-answer">
+          It assumes you write code and ship software, but not that you train models. Jargon gets
+          defined the first time it shows up, and every deep claim links to something you can
+          verify yourself.
+        </p>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          <span class="faq-question">Can I reply to the emails?</span>
+          <span class="faq-marker" aria-hidden="true"></span>
+        </summary>
+        <p class="faq-answer">
+          Please do. Replies land in a real inbox and get read. Corrections run in the next issue
+          with credit, and good questions often seed future issues.
+        </p>
+      </details>
+
+      <details class="faq-item">
+        <summary>
+          <span class="faq-question">Where do back issues live?</span>
+          <span class="faq-marker" aria-hidden="true"></span>
+        </summary>
+        <p class="faq-answer">
+          In the archive on this site, free and searchable. Subscribers get them by email first,
+          the web archive follows the same day.
+        </p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq {
+    background: var(--navy);
+    interpolate-size: allow-keywords;
+  }
+  .faq-inner {
+    max-width: 680px;
+    padding-top: 46px;
+    padding-bottom: 110px;
+  }
+  .faq-header {
+    text-align: center;
+  }
+  .faq-eyebrow {
+    color: var(--sheet-ink-tertiary);
+  }
+  .faq-title {
+    font-family: var(--font-serif);
+    letter-spacing: -0.5px;
+    color: var(--sheet-ink);
+    text-wrap: balance;
+    margin: 14px 0 0;
+    font-size: clamp(30px, 4vw, 38px);
+    font-weight: 500;
+    line-height: 1.15;
+  }
+  .faq-rule {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    margin-top: 24px;
+  }
+  .faq-rule-line {
+    background: var(--sheet-hairline);
+    width: 64px;
+    height: 1px;
+  }
+  .faq-rule-gem {
+    background: var(--sheet-orange);
+    width: 5px;
+    height: 5px;
+    transform: rotate(45deg);
+  }
+  .faq-list {
+    border-top: 1px solid var(--sheet-hairline);
+    margin-top: 40px;
+  }
+  .faq-item {
+    border-bottom: 1px solid var(--sheet-hairline);
+  }
+  .faq-item summary {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 20px;
+    padding: 19px 2px;
+    list-style: none;
+  }
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+  .faq-question {
+    font-family: var(--font-serif);
+    letter-spacing: -0.2px;
+    color: var(--sheet-ink-secondary);
+    text-wrap: pretty;
+    font-size: 18.5px;
+    font-weight: 500;
+    line-height: 1.35;
+    transition: color 0.2s;
+  }
+  .faq-item summary:hover .faq-question,
+  .faq-item[open] .faq-question {
+    color: var(--sheet-ink);
+  }
+  .faq-marker {
+    flex: none;
+    align-self: center;
+    width: 12px;
+    height: 12px;
+    transition: transform 0.3s;
+    position: relative;
+  }
+  .faq-marker::before,
+  .faq-marker::after {
+    content: "";
+    background: var(--sheet-ink-tertiary);
+    margin: auto;
+    transition: background 0.2s;
+    position: absolute;
+    inset: 0;
+  }
+  .faq-marker::before {
+    width: 12px;
+    height: 1px;
+  }
+  .faq-marker::after {
+    width: 1px;
+    height: 12px;
+  }
+  .faq-item summary:hover .faq-marker::before,
+  .faq-item summary:hover .faq-marker::after {
+    background: var(--sheet-ink-secondary);
+  }
+  .faq-item[open] .faq-marker {
+    transform: rotate(45deg);
+  }
+  .faq-item[open] .faq-marker::before,
+  .faq-item[open] .faq-marker::after {
+    background: var(--sheet-orange);
+  }
+  .faq-answer {
+    color: var(--sheet-ink-secondary);
+    text-wrap: pretty;
+    margin: 0;
+    padding: 0 40px 22px 2px;
+    font-size: 14.5px;
+    line-height: 1.65;
+  }
+  .faq-item::details-content {
+    opacity: 0;
+    block-size: 0;
+    transition: content-visibility 0.3s allow-discrete, block-size 0.3s ease, opacity 0.3s ease;
+    overflow-y: clip;
+  }
+  .faq-item[open]::details-content {
+    opacity: 1;
+    block-size: auto;
+  }
+  @media (width <= 640px) {
+    .faq-inner {
+      padding-bottom: 84px;
+    }
+    .faq-question {
+      font-size: 17px;
+    }
+    .faq-answer {
+      padding-right: 26px;
+    }
+  }
+</style>

@@ -1,0 +1,366 @@
+---
+// Archive wing: 3D issue cover plus a numbered table of recent issues.
+const base = import.meta.env.BASE_URL;
+---
+
+<section class="archive-wing" id="archive">
+  <div class="container">
+    <div class="part-header">
+      <span class="ghost-numeral" aria-hidden="true">01</span>
+      <div class="part-copy">
+        <p class="eyebrow kicker">The archive</p>
+        <h2 class="part-title">Start with any issue.</h2>
+        <p class="part-body">
+          Every back issue stays free and readable, no account required. Skim the glosses below and
+          pick whatever matches the problem on your desk today.
+        </p>
+      </div>
+    </div>
+
+    <div class="shelf">
+      <div class="cover-scene">
+        <div class="cover-shadow" aria-hidden="true"></div>
+        <div class="cover-book">
+          <div class="cover-spine">
+            <span class="spine-text">Daily Pill of AI</span>
+            <span class="spine-mark">Rx</span>
+          </div>
+          <div class="cover-front">
+            <img
+              class="cover-image"
+              src={`${base}images/wanderer.jpg`}
+              alt=""
+              loading="lazy"
+              aria-hidden="true"
+            />
+            <div class="cover-scrim" aria-hidden="true"></div>
+            <span class="cover-title">Daily Pill of AI</span>
+            <div class="cover-tokens">
+              <span class="token token-orange">daily</span>
+              <span class="token token-purple">practitioner</span>
+              <span class="token token-blue">receipts</span>
+              <span class="token token-neutral">no hype</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="toc">
+        <p class="toc-heading">Recent issues</p>
+        <ol class="toc-list">
+          <li class="toc-row">
+            <span class="toc-title">Small models, big receipts</span>
+            <span class="toc-gloss">what a 3B model can and cannot do for your pipeline</span>
+          </li>
+          <li class="toc-row">
+            <span class="toc-title">RAG is a data problem</span>
+            <span class="toc-gloss">why chunk size beats vector DB choice, with numbers</span>
+          </li>
+          <li class="toc-row">
+            <span class="toc-title">Agents that finish tasks</span>
+            <span class="toc-gloss">tool schemas, retries, and the boring path to reliability</span>
+          </li>
+          <li class="toc-row">
+            <span class="toc-title">Fine-tuning on a budget</span>
+            <span class="toc-gloss">when LoRA earns its keep and when prompting wins</span>
+          </li>
+          <li class="toc-row">
+            <span class="toc-title">Evals before demos</span>
+            <span class="toc-gloss">a 20-case harness that catches regressions early</span>
+          </li>
+          <li class="toc-row">
+            <span class="toc-title">Context windows lie</span>
+            <span class="toc-gloss">long context is not memory, and the benchmarks agree</span>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .archive-wing {
+    padding-top: 130px;
+  }
+  .part-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 28px;
+  }
+  .ghost-numeral {
+    font-family: var(--font-serif);
+    color: #ff950038;
+    user-select: none;
+    flex: none;
+    margin-top: 6px;
+    font-size: 110px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 0.8;
+  }
+  .part-copy {
+    min-width: 0;
+  }
+  .kicker {
+    color: var(--orange);
+  }
+  .part-title {
+    font-family: var(--font-serif);
+    letter-spacing: -0.4px;
+    text-wrap: balance;
+    margin: 12px 0 0;
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+  .part-body {
+    max-width: 560px;
+    color: var(--ink-66);
+    text-wrap: pretty;
+    margin: 14px 0 0;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+  .shelf {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    align-items: center;
+    gap: 84px;
+    margin-top: 64px;
+  }
+  .cover-scene {
+    perspective: 1300px;
+    justify-self: center;
+    padding: 10px 0 30px;
+  }
+  .cover-book {
+    width: 300px;
+    height: 450px;
+    transform-style: preserve-3d;
+    transition: transform 0.55s cubic-bezier(0.22, 0.61, 0.36, 1);
+    position: relative;
+    transform: rotateY(30deg);
+  }
+  @media (hover: hover) {
+    .cover-scene:hover .cover-book {
+      transform: rotateY(10.5deg) translateY(-6px);
+    }
+  }
+  .cover-shadow {
+    filter: blur(10px);
+    background: radial-gradient(at 40%, #0b173166, #0000 68%);
+    height: 40px;
+    position: absolute;
+    bottom: -22px;
+    left: 12px;
+    right: -8px;
+    transform: rotateY(-30deg) translateZ(-40px);
+  }
+  .cover-spine {
+    transform-origin: 0;
+    box-sizing: border-box;
+    background: linear-gradient(90deg, #0a142c, #0e1d3d 55%, #0b1731);
+    border-top: 1px solid #ffffff14;
+    border-bottom: 1px solid #0006;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 46px;
+    height: 100%;
+    padding: 20px 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: rotateY(-90deg);
+  }
+  .spine-text {
+    writing-mode: vertical-rl;
+    font-family: var(--font-serif);
+    letter-spacing: 0.4px;
+    color: #ffffffed;
+    white-space: nowrap;
+    font-size: 15px;
+    font-weight: 500;
+  }
+  .spine-mark {
+    color: #ffffffd9;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 12px;
+    line-height: 1;
+  }
+  .cover-front {
+    background: var(--navy);
+    box-sizing: border-box;
+    border-radius: 1px 3px 3px 1px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 34px 28px 30px;
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    transform: translateZ(46px);
+    box-shadow: inset 3px 0 6px #00000059, inset -1px 0 #ffffff0f;
+  }
+  .cover-image {
+    object-fit: cover;
+    object-position: 50% 30%;
+    filter: grayscale() brightness(0.95) contrast(1.05);
+    mix-blend-mode: luminosity;
+    opacity: 0.8;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    inset: 0;
+  }
+  .cover-scrim {
+    pointer-events: none;
+    background: linear-gradient(#0b1731d9 0%, #0b173159 32%, #0b17314d 60%, #0b1731bf 100%);
+    position: absolute;
+    inset: 0;
+  }
+  .cover-title {
+    font-family: var(--font-serif);
+    letter-spacing: -0.4px;
+    color: #ffffffed;
+    text-align: center;
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 1.18;
+    position: relative;
+  }
+  .cover-tokens {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 7px;
+    max-width: 210px;
+    position: relative;
+  }
+  .token {
+    font-family: var(--font-mono);
+    white-space: pre;
+    background: #0b17318c;
+    border-radius: 7px;
+    padding: 3.5px 7px;
+    font-size: 12.5px;
+  }
+  .token-orange {
+    color: #ffd9b8;
+    border: 1px solid #ffa35266;
+  }
+  .token-purple {
+    color: #dcc6ff;
+    border: 1px solid #bf8fff80;
+    font-weight: 600;
+  }
+  .token-blue {
+    color: #b9d4ff;
+    border: 1px solid #73b0ff66;
+  }
+  .token-neutral {
+    color: #ffffffd9;
+    border: 1px solid #ffffff40;
+  }
+  .toc-heading {
+    font-family: var(--font-serif);
+    color: var(--ink-55);
+    margin: 0;
+    font-size: 19px;
+    font-style: italic;
+  }
+  .toc-list {
+    counter-reset: issue;
+    margin: 18px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .toc-row {
+    counter-increment: issue;
+    border-bottom: 1px solid var(--hairline-soft);
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding: 11px 0;
+  }
+  .toc-row::before {
+    content: counter(issue, decimal-leading-zero);
+    font-family: var(--font-mono);
+    color: var(--ink-40);
+    flex: 0 0 26px;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+  }
+  .toc-title {
+    font-family: var(--font-serif);
+    letter-spacing: -0.2px;
+    color: var(--ink-86);
+    flex: none;
+    font-size: 19px;
+    font-weight: 500;
+  }
+  .toc-gloss {
+    min-width: 0;
+    font-family: var(--font-serif);
+    color: var(--ink-55);
+    font-size: 15.5px;
+    font-style: italic;
+    line-height: 1.4;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cover-book {
+      transition: none;
+    }
+  }
+  @media (width <= 860px) {
+    .shelf {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      gap: 34px;
+    }
+    .cover-scene {
+      padding-bottom: 16px;
+    }
+    .cover-book {
+      width: 244px;
+      height: 366px;
+      transform: rotateY(24deg);
+    }
+    .cover-spine {
+      width: 40px;
+    }
+    .cover-front {
+      padding: 28px 22px 24px;
+      transform: translateZ(40px);
+    }
+    .cover-title {
+      font-size: 24px;
+    }
+    .toc {
+      width: 100%;
+      max-width: 560px;
+    }
+  }
+  @media (width <= 560px) {
+    .ghost-numeral {
+      display: none;
+    }
+    .toc-title {
+      font-size: 17px;
+    }
+    .toc-row {
+      flex-wrap: wrap;
+      row-gap: 2px;
+    }
+    .toc-gloss {
+      flex: 1 0 100%;
+      padding-left: 40px;
+      font-size: 14.5px;
+    }
+  }
+</style>

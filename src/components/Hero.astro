@@ -1,0 +1,585 @@
+---
+// Hero: painting backdrop, glass shader, serif titles, overlapping issue-preview card.
+const base = import.meta.env.BASE_URL;
+---
+
+<header class="hero" id="top">
+  <img
+    class="hero-painting"
+    src={`${base}images/wanderer.jpg`}
+    alt="Wanderer above the Sea of Fog by Caspar David Friedrich"
+    loading="eager"
+  />
+  <div class="hero-shader" aria-hidden="true"><canvas class="hero-canvas"></canvas></div>
+  <div class="hero-scrim" aria-hidden="true"></div>
+  <div class="fog fog-a" aria-hidden="true"></div>
+  <div class="fog fog-b" aria-hidden="true"></div>
+  <div class="fog fog-c" aria-hidden="true"></div>
+
+  <div class="hero-titles">
+    <p class="eyebrow hero-eyebrow">A daily newsletter about AI, minus the hype</p>
+    <h1>Your daily pill of AI.</h1>
+    <p class="hero-sub">
+      One short email a day. What actually changed, why it matters, and what you can build with it.
+    </p>
+  </div>
+
+  <div class="hero-fade" aria-hidden="true"></div>
+</header>
+
+<div class="hero-below">
+  <div class="issue-card">
+    <div class="issue-chrome">
+      <span class="issue-dot"></span>
+      <span class="issue-dot"></span>
+      <span class="issue-dot"></span>
+      <span class="issue-title">Daily Pill of AI, issue 142</span>
+    </div>
+    <div class="issue-body">
+      <p class="issue-subject">Small models, big receipts</p>
+      <div class="issue-lines">
+        <span style="width: 92%"></span>
+        <span style="width: 84%"></span>
+        <span style="width: 88%"></span>
+        <span style="width: 46%"></span>
+      </div>
+      <div class="issue-chips">
+        <span class="chip chip-blue">tokenizer</span>
+        <span class="chip chip-orange">loss=2.31</span>
+        <span class="chip chip-purple">SFT</span>
+        <span class="chip chip-gray">eval</span>
+      </div>
+      <svg class="issue-chart" viewBox="0 0 320 84" aria-hidden="true">
+        <polyline
+          points="0,12 32,18 64,26 96,30 128,40 160,44 192,52 224,58 256,62 288,68 320,70"
+          fill="none"
+          stroke="#ff9500"
+          stroke-width="2"
+          stroke-linecap="round"
+        />
+        <polyline
+          points="0,70 32,68 64,72 96,66 128,69 160,64 192,67 224,62 256,64 288,60 320,61"
+          fill="none"
+          stroke="#73b0ff"
+          stroke-width="2"
+          stroke-linecap="round"
+          opacity="0.7"
+        />
+      </svg>
+      <p class="issue-caption">Training loss, before and after the fix. Every claim ships with a receipt.</p>
+    </div>
+  </div>
+
+  <div class="hero-cta">
+    <div class="hero-cta-buttons">
+      <a class="btn-primary" href="#subscribe">Subscribe free</a>
+      <a class="btn-secondary" href="#archive">Read the archive <span>no account needed</span></a>
+    </div>
+    <p class="hero-cta-note">Free forever. No spam. Unsubscribe in one click.</p>
+  </div>
+</div>
+
+<style>
+  .hero {
+    background: var(--navy);
+    height: min(84vh, 800px);
+    min-height: 600px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-painting {
+    object-fit: cover;
+    object-position: 50% 36%;
+    filter: blur(18px);
+    width: 100%;
+    height: 100%;
+    transition: filter 0.9s;
+    position: absolute;
+    inset: 0;
+  }
+  .hero-painting.is-ready {
+    filter: none;
+  }
+  .hero-shader {
+    position: absolute;
+    inset: 0;
+  }
+  .hero-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    inset: 0;
+  }
+  .hero-scrim {
+    pointer-events: none;
+    background: linear-gradient(#0000, #00000057 55%, #00000094);
+    height: 420px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  .fog {
+    background: var(--bg);
+    filter: blur(34px);
+    pointer-events: none;
+    border-radius: 50%;
+    animation: fog-drift 18s ease-in-out infinite alternate;
+    position: absolute;
+  }
+  .fog-a {
+    width: 340px;
+    height: 180px;
+    left: 4%;
+    bottom: 12%;
+    opacity: 0.55;
+  }
+  .fog-b {
+    width: 420px;
+    height: 200px;
+    right: 2%;
+    bottom: 26%;
+    opacity: 0.4;
+    animation-delay: -6s;
+  }
+  .fog-c {
+    width: 260px;
+    height: 140px;
+    left: 38%;
+    bottom: 4%;
+    opacity: 0.5;
+    animation-delay: -12s;
+  }
+  .hero-titles {
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 40px 268px;
+    position: absolute;
+    inset: 0;
+  }
+  .hero-eyebrow {
+    color: #ffffffb3;
+    text-shadow: 0 1px 6px #000000a6;
+    margin: 0 0 14px;
+  }
+  .hero-titles h1 {
+    font-family: var(--font-serif);
+    font-optical-sizing: auto;
+    letter-spacing: -0.02em;
+    color: #fff;
+    text-align: center;
+    text-shadow: 0 1px 2px #00000052, 0 2px 24px #00000059;
+    text-wrap: balance;
+    margin: 0;
+    font-size: clamp(44px, 6.8vw, 76px);
+    font-weight: 400;
+    line-height: 1.05;
+  }
+  .hero-sub {
+    font-family: var(--font-serif);
+    font-optical-sizing: auto;
+    color: #fff;
+    text-align: center;
+    text-shadow: 0 1px 3px #00000073, 0 2px 16px #0006;
+    text-wrap: balance;
+    margin: 16px 0 0;
+    font-size: clamp(19px, 2.1vw, 22px);
+    font-style: italic;
+  }
+  .hero-fade {
+    background: linear-gradient(to top, var(--bg) 12%, #f2f3f5d1 46%, #f2f3f500);
+    pointer-events: none;
+    height: 260px;
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+  }
+  .hero-below {
+    z-index: 2;
+    max-width: 1000px;
+    margin: -172px auto 0;
+    padding: 0 32px;
+    position: relative;
+  }
+  .issue-card {
+    aspect-ratio: 16 / 10;
+    background: #fbfbfc;
+    border: 1px solid #1419231a;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 24px 60px #0a142847, 0 2px 6px #0a14281f;
+    display: flex;
+    flex-direction: column;
+  }
+  .issue-chrome {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--hairline);
+    background: #f6f7f9;
+    flex: none;
+  }
+  .issue-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #d5d9df;
+  }
+  .issue-dot:first-child {
+    background: #ff5f57;
+  }
+  .issue-dot:nth-child(2) {
+    background: #febc2e;
+  }
+  .issue-dot:nth-child(3) {
+    background: #28c840;
+  }
+  .issue-title {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+    color: var(--ink-45);
+    margin-left: 10px;
+  }
+  .issue-body {
+    padding: 26px 34px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    flex: 1;
+  }
+  .issue-subject {
+    font-family: var(--font-serif);
+    font-size: 24px;
+    font-weight: 500;
+    letter-spacing: -0.3px;
+    margin: 0;
+    color: var(--ink);
+  }
+  .issue-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+  .issue-lines span {
+    height: 9px;
+    border-radius: 999px;
+    background: #14192310;
+  }
+  .issue-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+  }
+  .chip {
+    font-family: var(--font-mono);
+    white-space: pre;
+    border-radius: 7px;
+    padding: 3.5px 7px;
+    font-size: 12.5px;
+  }
+  .chip-blue {
+    background: #0a7aff21;
+    border: 1px solid #0a7aff38;
+  }
+  .chip-orange {
+    background: #ff950021;
+    border: 1px solid #ff950038;
+  }
+  .chip-purple {
+    background: #af52de3d;
+    border: 1px solid #af52de80;
+    font-weight: 600;
+  }
+  .chip-gray {
+    background: #787c8421;
+    border: 1px solid #787c8438;
+  }
+  .issue-chart {
+    width: min(420px, 70%);
+    align-self: center;
+    margin-top: auto;
+  }
+  .issue-caption {
+    font-size: 12px;
+    color: var(--ink-45);
+    text-align: center;
+    margin: 0;
+  }
+  .hero-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 34px 0 0;
+  }
+  .hero-cta-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  .btn-primary {
+    background: var(--blue);
+    color: #fff;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    font-size: 15px;
+    font-weight: 600;
+    transition: background 0.15s;
+    box-shadow: 0 6px 18px #0a7aff52;
+  }
+  .btn-primary:hover {
+    background: var(--blue-hover);
+    color: #fff;
+  }
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    border: 1px solid var(--ink-30);
+    color: var(--ink-55);
+    background: transparent;
+    border-radius: 999px;
+    min-height: 41px;
+    padding: 0 18px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .btn-secondary span {
+    border-left: 1px solid var(--ink-30);
+    letter-spacing: 0.02em;
+    padding-left: 9px;
+    font-size: 11px;
+    font-weight: 500;
+  }
+  .hero-cta-note {
+    color: var(--ink-55);
+    font-size: 13px;
+  }
+  @media (width <= 640px) {
+    .hero-titles {
+      padding-bottom: 240px;
+    }
+    .hero-below {
+      margin-top: -150px;
+      padding: 0 20px;
+    }
+    .hero-cta-note {
+      text-align: center;
+      max-width: 320px;
+      line-height: 1.45;
+    }
+    .issue-body {
+      padding: 20px 22px 22px;
+    }
+  }
+</style>
+
+<script>
+  // Base layer: blur-to-sharp on the poster image.
+  const img = document.querySelector<HTMLImageElement>(".hero-painting");
+  if (img) {
+    if (img.complete) {
+      img.classList.add("is-ready");
+    } else {
+      img.addEventListener("load", () => img.classList.add("is-ready"), { once: true });
+    }
+  }
+
+  // Glass layer: fluted-glass distortion drawn over the painting with WebGL.
+  const VERT = `
+attribute vec2 a_pos;
+varying vec2 v_uv;
+void main() {
+  v_uv = a_pos * 0.5 + 0.5;
+  gl_Position = vec4(a_pos, 0.0, 1.0);
+}`;
+
+  const FRAG = `
+precision mediump float;
+varying vec2 v_uv;
+uniform sampler2D u_tex;
+uniform float u_time;
+uniform float u_canvasAspect;
+uniform float u_texAspect;
+
+float hash(vec2 p) {
+  return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123);
+}
+float vnoise(vec2 p) {
+  vec2 i = floor(p);
+  vec2 f = fract(p);
+  vec2 u = f * f * (3.0 - 2.0 * f);
+  float a = hash(i);
+  float b = hash(i + vec2(1.0, 0.0));
+  float c = hash(i + vec2(0.0, 1.0));
+  float d = hash(i + vec2(1.0, 1.0));
+  return mix(mix(a, b, u.x), mix(c, d, u.x), u.y);
+}
+vec2 coverUV(vec2 uv) {
+  vec2 size = u_canvasAspect > u_texAspect
+    ? vec2(1.0, u_texAspect / u_canvasAspect)
+    : vec2(u_canvasAspect / u_texAspect, 1.0);
+  vec2 origin = (vec2(1.0) - size) * vec2(0.5, 0.36);
+  return origin + uv * size;
+}
+void main() {
+  vec2 uv = v_uv;
+  float t = u_time * 0.055;
+  float n1 = vnoise(vec2(uv.x * 3.5 + t * 0.45, 2.0));
+  float n2 = vnoise(vec2(uv.x * 10.0 - t * 0.8, 7.0));
+  float vmod = 0.35 + 0.65 * vnoise(vec2(uv.y * 2.5 - t * 0.5, 3.3));
+  float dx = ((n1 - 0.5) * 0.05 + (n2 - 0.5) * 0.022) * vmod;
+  vec2 st = coverUV(uv);
+  float sm = 0.012 * (0.4 + 0.6 * vmod);
+  vec3 col = vec3(0.0);
+  col += texture2D(u_tex, clamp(st + vec2(dx, -sm), 0.0, 1.0)).rgb * 0.14;
+  col += texture2D(u_tex, clamp(st + vec2(dx, -sm * 0.5), 0.0, 1.0)).rgb * 0.22;
+  col += texture2D(u_tex, clamp(st + vec2(dx, 0.0), 0.0, 1.0)).rgb * 0.28;
+  col += texture2D(u_tex, clamp(st + vec2(dx, sm * 0.5), 0.0, 1.0)).rgb * 0.22;
+  col += texture2D(u_tex, clamp(st + vec2(dx, sm), 0.0, 1.0)).rgb * 0.14;
+  float flute = sin(uv.x * 3.14159 * 26.0);
+  col *= 0.97 + 0.05 * flute;
+  gl_FragColor = vec4(col, 1.0);
+}`;
+
+  const canvas = document.querySelector<HTMLCanvasElement>(".hero-canvas");
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function initGlass(): boolean {
+    if (!canvas) return false;
+    const gl = canvas.getContext("webgl", {
+      antialias: false,
+      alpha: false,
+      powerPreference: "low-power",
+    });
+    if (!gl) return false;
+
+    const compile = (type: number, src: string): WebGLShader | null => {
+      const shader = gl.createShader(type);
+      if (!shader) return null;
+      gl.shaderSource(shader, src);
+      gl.compileShader(shader);
+      if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+        gl.deleteShader(shader);
+        return null;
+      }
+      return shader;
+    };
+
+    const vs = compile(gl.VERTEX_SHADER, VERT);
+    const fs = compile(gl.FRAGMENT_SHADER, FRAG);
+    if (!vs || !fs) return false;
+    const program = gl.createProgram();
+    if (!program) return false;
+    gl.attachShader(program, vs);
+    gl.attachShader(program, fs);
+    gl.linkProgram(program);
+    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) return false;
+    gl.useProgram(program);
+
+    const buffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+    gl.bufferData(
+      gl.ARRAY_BUFFER,
+      new Float32Array([-1, -1, 3, -1, -1, 3]),
+      gl.STATIC_DRAW,
+    );
+    const aPos = gl.getAttribLocation(program, "a_pos");
+    gl.enableVertexAttribArray(aPos);
+    gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+
+    const uTex = gl.getUniformLocation(program, "u_tex");
+    const uTime = gl.getUniformLocation(program, "u_time");
+    const uCanvasAspect = gl.getUniformLocation(program, "u_canvasAspect");
+    const uTexAspect = gl.getUniformLocation(program, "u_texAspect");
+    gl.uniform1i(uTex, 0);
+
+    let texture: WebGLTexture | null = null;
+    let texAspect = 1.0;
+    let running = false;
+    let visible = true;
+    const start = performance.now();
+
+    const resize = (): boolean => {
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.75);
+      const w = Math.round(canvas.clientWidth * dpr);
+      const h = Math.round(canvas.clientHeight * dpr);
+      if (w === 0 || h === 0) return false;
+      if (canvas.width !== w || canvas.height !== h) {
+        canvas.width = w;
+        canvas.height = h;
+        gl.viewport(0, 0, w, h);
+      }
+      gl.uniform1f(uCanvasAspect, canvas.clientWidth / canvas.clientHeight);
+      return true;
+    };
+
+    const draw = (now: number) => {
+      if (!resize()) return;
+      gl.uniform1f(uTime, reducedMotion ? 25.0 : (now - start) / 1000);
+      gl.drawArrays(gl.TRIANGLES, 0, 3);
+    };
+
+    const loop = (now: number) => {
+      if (!running) return;
+      if (visible && !document.hidden) draw(now);
+      requestAnimationFrame(loop);
+    };
+
+    const startLoop = () => {
+      if (running || reducedMotion) {
+        if (reducedMotion) draw(performance.now());
+        return;
+      }
+      running = true;
+      requestAnimationFrame(loop);
+    };
+
+    new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+    }).observe(canvas);
+    window.addEventListener("resize", () => visible && draw(performance.now()));
+
+    const setupTexture = (image: HTMLImageElement) => {
+      texture = gl.createTexture();
+      gl.bindTexture(gl.TEXTURE_2D, texture);
+      gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
+      texAspect = image.naturalWidth / image.naturalHeight;
+      gl.uniform1f(uTexAspect, texAspect);
+      draw(performance.now());
+      startLoop();
+    };
+
+    const source = img?.currentSrc || img?.src || "/images/wanderer.jpg";
+    if (img?.complete && img.naturalWidth > 0) {
+      setupTexture(img);
+    } else {
+      const loader = new Image();
+      loader.addEventListener("load", () => setupTexture(loader), { once: true });
+      loader.src = source;
+    }
+    return true;
+  }
+
+  if (!initGlass()) {
+    canvas?.remove();
+  }
+</script>

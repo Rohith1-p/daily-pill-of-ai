@@ -1,0 +1,66 @@
+---
+// Navy footer.
+---
+
+<footer>
+  <div class="container footer-inner">
+    <div class="footer-row">
+      <span class="footer-wordmark">Daily Pill of AI</span>
+      <span class="footer-spacer"></span>
+      <div class="footer-links">
+        <a href="#archive">Archive</a>
+        <a href="#inside">Inside</a>
+        <a href="#faq">FAQ</a>
+        <a href="mailto:hello@example.com">Contact</a>
+      </div>
+    </div>
+    <p class="footer-note">
+      Written by Rohith Perumandla. Paintings by Caspar David Friedrich, public domain via Wikimedia
+      Commons.
+    </p>
+  </div>
+</footer>
+
+<style>
+  footer {
+    background: var(--navy);
+  }
+  .footer-inner {
+    padding-top: 34px;
+    padding-bottom: 40px;
+  }
+  .footer-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 18px;
+  }
+  .footer-wordmark {
+    font-family: var(--font-serif);
+    color: #ffffffeb;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .footer-spacer {
+    flex: 1;
+  }
+  .footer-links {
+    display: flex;
+    gap: 20px;
+  }
+  .footer-links a {
+    color: #fff9;
+    font-size: 12.5px;
+  }
+  .footer-links a:hover {
+    color: #ffffffe6;
+  }
+  .footer-note {
+    color: #ffffff61;
+    text-wrap: pretty;
+    max-width: 640px;
+    margin-top: 20px;
+    font-size: 12px;
+    line-height: 1.6;
+  }
+</style>

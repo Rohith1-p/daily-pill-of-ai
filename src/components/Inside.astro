@@ -1,0 +1,387 @@
+---
+// Dark wing: anatomy of an issue, with CSS mockups instead of screenshots.
+---
+
+<section class="wing" id="inside">
+  <div class="container wing-inner">
+    <div class="status-row">
+      <span class="status-label"><span class="pulse-dot"></span> publishing daily</span>
+      <span class="status-label">weekdays, 7am PT</span>
+    </div>
+
+    <div class="part-header">
+      <span class="ghost-numeral" aria-hidden="true">02</span>
+      <div class="part-copy">
+        <p class="eyebrow kicker">Inside every issue</p>
+        <h2 class="part-title">Three parts. Every day.</h2>
+        <p class="part-body">
+          Each email follows the same shape, so your brain knows where to look. The story, the
+          proof, and the take you can act on before standup.
+        </p>
+      </div>
+    </div>
+
+    <article class="wide-card">
+      <div class="wide-copy">
+        <p class="feature-kicker">01 · The brief</p>
+        <h3 class="wide-title">The story, in plain words.</h3>
+        <p class="wide-body">
+          What shipped, who it matters to, and the honest read on whether it changes your week. If
+          the answer is no, the issue says so and moves on.
+        </p>
+      </div>
+      <div class="wide-media">
+        <div class="mock-frame">
+          <p class="mock-heading">Brief</p>
+          <div class="mock-lines">
+            <span style="width: 88%"></span>
+            <span style="width: 96%"></span>
+            <span style="width: 74%"></span>
+            <span style="width: 90%"></span>
+            <span style="width: 58%"></span>
+          </div>
+          <div class="mock-callout">
+            <span class="mock-callout-label">take</span>
+            <span class="mock-callout-text">Worth a spike this sprint, not a rewrite.</span>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <div class="card-grid">
+      <article class="half-card">
+        <div class="half-media">
+          <pre class="mock-code"><code><span class="c"># receipts, not vibes</span>
+<span class="k">def</span> <span class="f">eval</span>(cases):
+    scores = [judge(c) <span class="k">for</span> c <span class="k">in</span> cases]
+    <span class="k">return</span> mean(scores), ci95(scores)
+
+mean, ci = eval(harness)
+<span class="c"># 0.71 [0.64, 0.78]</span></code></pre>
+        </div>
+        <div class="half-copy">
+          <p class="feature-kicker">02 · The receipt</p>
+          <h3 class="half-title">Proof you can rerun.</h3>
+          <p class="half-body">
+            Benchmarks get re-run, snippets get tested, charts get traced back to source. If a claim
+            cannot carry a receipt, it does not make the cut.
+          </p>
+        </div>
+      </article>
+
+      <article class="half-card">
+        <div class="half-media">
+          <div class="mock-chat">
+            <div class="mock-msg mock-q">should we swap our embedding model?</div>
+            <div class="mock-msg mock-a">
+              Not yet. Recall holds at 0.84 and the swap costs a full reindex. Revisit after the
+              next eval run.
+            </div>
+          </div>
+        </div>
+        <div class="half-copy">
+          <p class="feature-kicker">03 · The take</p>
+          <h3 class="half-title">A verdict, not a shrug.</h3>
+          <p class="half-body">
+            The issue closes with a position you can argue with. Reply if you disagree. The best
+            threads in this newsletter started as arguments.
+          </p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .wing {
+    z-index: 1;
+    background: linear-gradient(to bottom, var(--navy-light), var(--navy) 55%);
+    position: relative;
+  }
+  .wing::before {
+    content: "";
+    pointer-events: none;
+    background: radial-gradient(900px 480px at 16% 10%, #73b0ff1c, #0000 68%),
+      radial-gradient(1200px 720px at 88% 82%, #4c70be24, #0000 72%);
+    position: absolute;
+    inset: 0;
+    mask-image: linear-gradient(#0000, #000 180px calc(100% - 220px), #0000);
+    -webkit-mask-image: linear-gradient(#0000, #000 180px calc(100% - 220px), #0000);
+  }
+  .wing-inner {
+    z-index: 1;
+    padding-top: 34px;
+    padding-bottom: 110px;
+    position: relative;
+  }
+  .status-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    padding-bottom: 13px;
+  }
+  .status-label {
+    font-family: var(--font-mono);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--sheet-ink-tertiary);
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .pulse-dot {
+    background: var(--sheet-green);
+    border-radius: 50%;
+    width: 6px;
+    height: 6px;
+    animation: pulse-dot 2.6s ease-out infinite;
+  }
+  .part-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 28px;
+    margin-top: 52px;
+  }
+  .ghost-numeral {
+    font-family: var(--font-serif);
+    color: #73b0ff33;
+    user-select: none;
+    flex: none;
+    margin-top: 6px;
+    font-size: 110px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 0.8;
+  }
+  .part-copy {
+    min-width: 0;
+  }
+  .kicker {
+    color: var(--sheet-blue);
+  }
+  .part-title {
+    font-family: var(--font-serif);
+    letter-spacing: -0.4px;
+    color: var(--sheet-ink);
+    text-wrap: balance;
+    margin: 12px 0 0;
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+  .part-body {
+    max-width: 560px;
+    color: var(--sheet-ink-secondary);
+    text-wrap: pretty;
+    margin: 14px 0 0;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+  .feature-kicker {
+    font-family: var(--font-mono);
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--sheet-blue);
+    font-size: 10.5px;
+    font-weight: 600;
+    margin: 0;
+  }
+  .wide-card {
+    box-shadow: var(--shadow-sheet);
+    background: #ffffff08;
+    border: 1px solid #ffffff1a;
+    border-radius: 20px;
+    display: grid;
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+    margin-top: 40px;
+    overflow: hidden;
+  }
+  .wide-copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 36px 34px;
+  }
+  .wide-title {
+    font-family: var(--font-serif);
+    letter-spacing: -0.3px;
+    color: var(--sheet-ink);
+    margin: 12px 0 0;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 1.25;
+  }
+  .wide-body {
+    color: var(--sheet-ink-secondary);
+    text-wrap: pretty;
+    margin: 14px 0 0;
+    font-size: 14.5px;
+    line-height: 1.65;
+  }
+  .wide-media {
+    border-left: 1px solid #ffffff1a;
+    min-height: 380px;
+    display: grid;
+    place-items: center;
+    padding: 30px;
+  }
+  .mock-frame {
+    width: min(380px, 100%);
+    background: #ffffff0a;
+    border: 1px solid #ffffff1a;
+    border-radius: 14px;
+    padding: 22px 24px;
+  }
+  .mock-heading {
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    font-size: 10px;
+    color: var(--sheet-ink-tertiary);
+    margin: 0 0 14px;
+  }
+  .mock-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .mock-lines span {
+    height: 8px;
+    border-radius: 999px;
+    background: #ffffff14;
+  }
+  .mock-callout {
+    margin-top: 18px;
+    border-top: 1px solid var(--sheet-hairline);
+    padding-top: 14px;
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+  }
+  .mock-callout-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--sheet-orange);
+    flex: none;
+  }
+  .mock-callout-text {
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--sheet-ink);
+    font-size: 14.5px;
+    line-height: 1.5;
+  }
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+  }
+  .half-card {
+    background: #ffffff0a;
+    border: 1px solid #ffffff1a;
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  .half-media {
+    border-bottom: 1px solid #ffffff1a;
+    height: 280px;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+  }
+  .mock-code {
+    width: 100%;
+    background: #0a12266e;
+    border: 1px solid #ffffff14;
+    border-radius: 12px;
+    padding: 18px 20px;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    line-height: 1.7;
+    color: #ffffffc9;
+    overflow-x: auto;
+    margin: 0;
+  }
+  .mock-code .c {
+    color: #ffffff6b;
+  }
+  .mock-code .k {
+    color: #bf8fff;
+  }
+  .mock-code .f {
+    color: #73b0ff;
+  }
+  .mock-chat {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .mock-msg {
+    max-width: 88%;
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-size: 13px;
+    line-height: 1.55;
+  }
+  .mock-q {
+    align-self: flex-end;
+    background: #0a7aff33;
+    border: 1px solid #0a7aff4d;
+    color: var(--sheet-ink);
+  }
+  .mock-a {
+    align-self: flex-start;
+    background: #ffffff0d;
+    border: 1px solid #ffffff1a;
+    color: var(--sheet-ink-secondary);
+  }
+  .half-copy {
+    padding: 24px 28px 28px;
+  }
+  .half-title {
+    font-family: var(--font-serif);
+    letter-spacing: -0.3px;
+    color: var(--sheet-ink);
+    margin: 10px 0 0;
+    font-size: 21px;
+    font-weight: 500;
+    line-height: 1.25;
+  }
+  .half-body {
+    color: var(--sheet-ink-secondary);
+    text-wrap: pretty;
+    margin: 12px 0 0;
+    font-size: 13.5px;
+    line-height: 1.6;
+  }
+  @media (width <= 860px) {
+    .wide-card {
+      grid-template-columns: 1fr;
+    }
+    .wide-media {
+      border-top: 1px solid #ffffff1a;
+      border-left: 0;
+      order: 2;
+      min-height: 260px;
+    }
+    .card-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (width <= 560px) {
+    .ghost-numeral {
+      display: none;
+    }
+    .status-row {
+      flex-direction: column;
+      gap: 8px;
+    }
+  }
+</style>

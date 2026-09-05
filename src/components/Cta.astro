@@ -1,0 +1,120 @@
+---
+// Closing CTA over the Monk by the Sea painting, with the live beehiiv subscribe form.
+const base = import.meta.env.BASE_URL;
+---
+
+<section class="cta" id="subscribe">
+  <img
+    class="cta-painting"
+    src={`${base}images/monk-by-the-sea.jpg`}
+    alt="Monk by the Sea by Caspar David Friedrich"
+    loading="lazy"
+  />
+  <div class="cta-tint" aria-hidden="true"></div>
+  <div class="cta-fade-top" aria-hidden="true"></div>
+  <div class="cta-fade-bottom" aria-hidden="true"></div>
+
+  <div class="cta-content">
+    <h2>Take your first pill.</h2>
+    <div class="form-slot">
+      <script
+        is:inline
+        async
+        src="https://subscribe-forms.beehiiv.com/v3/loader.js"
+        data-beehiiv-form="ffe7006a-1942-4ad6-b459-7554c24ae725"
+      ></script>
+    </div>
+    <p class="cta-note">Free forever. No spam. Unsubscribe in one click.</p>
+  </div>
+</section>
+
+<style>
+  .cta {
+    background: var(--navy);
+    height: 560px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-painting {
+    object-fit: cover;
+    object-position: 30% bottom;
+    filter: brightness(1.14) contrast(0.98);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+  }
+  .cta-tint {
+    background: #0b17313d;
+    position: absolute;
+    inset: 0;
+  }
+  .cta-fade-top {
+    background: linear-gradient(
+      to bottom,
+      var(--navy),
+      #0b1731f0 18%,
+      #0b1731b8 40%,
+      #0b173161 66%,
+      #0b17311f 86%,
+      #0b173100
+    );
+    height: 55%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+  .cta-fade-bottom {
+    background: linear-gradient(
+      to top,
+      var(--navy),
+      #0b1731d1 18%,
+      #0b17316b 45%,
+      #0b173124 74%,
+      #0b173100
+    );
+    height: 40%;
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+  }
+  .cta-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 18px;
+    height: 100%;
+    padding: 40px 32px 0;
+    position: relative;
+  }
+  .cta-content h2 {
+    font-family: var(--font-serif);
+    letter-spacing: -0.5px;
+    color: #fff;
+    text-shadow: 0 2px 16px #00000059;
+    text-wrap: balance;
+    margin: 0;
+    font-size: 34px;
+    font-weight: 500;
+  }
+  .form-slot {
+    width: min(480px, 100%);
+    min-height: 76px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .form-slot :global(iframe) {
+    max-width: 100%;
+  }
+  .cta-note {
+    color: #ffffffc7;
+    text-shadow: 0 1px 8px #0006;
+    font-size: 13px;
+    margin: 0;
+  }
+</style>

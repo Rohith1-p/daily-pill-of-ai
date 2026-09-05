@@ -1,0 +1,73 @@
+---
+const links = [
+  { href: "#inside", label: "Inside" },
+  { href: "#archive", label: "Archive" },
+  { href: "#faq", label: "FAQ" },
+];
+---
+
+<nav>
+  <div class="container nav-inner">
+    <a class="wordmark" href="#top">Daily Pill of AI</a>
+    <div class="links">
+      {links.map((l) => <a class="nav-link" href={l.href}>{l.label}</a>)}
+      <a class="nav-cta" href="#subscribe">Subscribe free</a>
+    </div>
+  </div>
+</nav>
+
+<style>
+  nav {
+    z-index: 50;
+    backdrop-filter: blur(18px) saturate(1.4);
+    -webkit-backdrop-filter: blur(18px) saturate(1.4);
+    border-bottom: 1px solid var(--hairline);
+    background: #f2f3f5c7;
+    position: sticky;
+    top: 0;
+  }
+  .nav-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 26px;
+    height: 54px;
+  }
+  .wordmark {
+    font-family: var(--font-serif);
+    letter-spacing: -0.2px;
+    color: var(--ink);
+    font-size: 17px;
+    font-weight: 600;
+  }
+  .links {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+  }
+  .nav-link {
+    color: var(--ink-66);
+    font-size: 13px;
+  }
+  .nav-link:hover {
+    color: var(--ink);
+  }
+  .nav-cta {
+    color: #fff;
+    background: var(--blue);
+    border-radius: 999px;
+    padding: 6px 15px;
+    font-size: 13px;
+    font-weight: 600;
+    transition: background 0.15s;
+  }
+  .nav-cta:hover {
+    background: var(--blue-hover);
+    color: #fff;
+  }
+  @media (width <= 560px) {
+    .nav-link {
+      display: none;
+    }
+  }
+</style>
