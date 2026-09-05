@@ -1,6 +1,6 @@
 import { defineConfig } from "astro/config";
 
 export default defineConfig({
-  site: "https://rohith1-p.github.io",
+  site: "https://rohithperumandla.me",
   base: "/daily-pill-of-ai/",
 });
